@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import ParticipationChart from "./ParticipationChart";
+import PopularTrainingChart from "./PopularTrainingChart";
 
 // function App() {
 //   return (
@@ -28,6 +30,7 @@ interface Course {
   status: string;
   color: string;
   icon: string;
+  link?: string;
 }
 
 interface ProgressItem {
@@ -96,6 +99,7 @@ const App = () => {
       status: "✅ Selesai",
       color: "from-purple-500 to-indigo-600",
       icon: "🛡️",
+      link: "https://fiberstar.joelmedia.my.id/course/view.php?id=2",
     },
     {
       id: 1024,
@@ -210,7 +214,14 @@ const App = () => {
   );
 
   const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
+    <div
+      onClick={() => {
+        if (course?.link) {
+          window.open(course?.link, "_blank");
+        }
+      }}
+      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+    >
       <div
         className={`h-40 bg-gradient-to-br ${course.color} flex items-center justify-center text-5xl relative`}
       >
@@ -266,7 +277,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-4 shadow-lg">
+      <header className="bg-gradient-to-r from-[#f37336] to-[#e08b63] text-white p-4 shadow-lg">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-900 font-bold text-lg">
@@ -274,7 +285,7 @@ const App = () => {
             </div>
             <div>
               <div className="text-xl font-semibold">
-                Fiber Star Learning Hub
+                FiberStar Learning Hub
                 <span className="ml-2 text-xs bg-white/20 px-3 py-1 rounded-full font-bold">
                   Powered by Moodle 5.1
                 </span>
@@ -298,7 +309,7 @@ const App = () => {
       </header>
 
       {/* API Info Banner */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-8 flex items-center gap-3 text-sm">
+      <div className=" bg-[#f37336]/80 text-white py-3 px-8 flex items-center gap-3 text-sm">
         <span className="text-xl">🔗</span>
         <span>
           Dashboard ini terintegrasi real-time dengan Moodle Core menggunakan
@@ -380,7 +391,8 @@ const App = () => {
                     Refresh
                   </button>
                 </div>
-                <div className="h-64 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center text-white text-center p-6">
+                <ParticipationChart />
+                {/* <div className="h-64 bg-gradient-to-br to-[#f37336] from-[#e08b64]  rounded-lg flex items-center justify-center text-white text-center p-6">
                   <div>
                     <div className="text-xl mb-2">📊</div>
                     <div>Data source: mdl_logstore_standard_log</div>
@@ -393,7 +405,7 @@ const App = () => {
                       cohort
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-md">
@@ -424,7 +436,8 @@ const App = () => {
                   via mdl_course_enrolments
                 </span>
               </div>
-              <div className="h-48 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center text-white text-center p-6">
+              <PopularTrainingChart />
+              {/* <div className="h-48 bg-gradient-to-br to-[#f37336] from-[#e08b64] rounded-lg flex items-center justify-center text-white text-center p-6">
                 <div>
                   <div className="text-xl mb-2">📈</div>
                   <div>
@@ -435,7 +448,7 @@ const App = () => {
                     Real-time enrollment tracking via Moodle enrollment API
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         )}
@@ -648,7 +661,7 @@ const App = () => {
               M
             </div>
             <span className="text-sm">
-              <strong>Moodle 4.5</strong> - Open Source LMS
+              <strong>Moodle 5.1</strong> - Open Source LMS
             </span>
           </div>
           <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
