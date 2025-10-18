@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ParticipationChart from "./ParticipationChart";
 import PopularTrainingChart from "./PopularTrainingChart";
+import logo from "./assets/logo_footer_1675914527.png";
 
 // function App() {
 //   return (
@@ -280,12 +281,14 @@ const App = () => {
       <header className="bg-gradient-to-r from-[#f37336] to-[#e08b63] text-white p-4 shadow-lg">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-900 font-bold text-lg">
+            {/* <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-900 font-bold text-lg">
               FS
-            </div>
-            <div>
+            </div> */}
+
+            <img src={logo} className="logo w-28" alt="FiberStar logo" />
+            <div className="border-l pl-4">
               <div className="text-xl font-semibold">
-                FiberStar Learning Hub
+                Learning Hub
                 <span className="ml-2 text-xs bg-white/20 px-3 py-1 rounded-full font-bold">
                   Powered by Moodle 5.1
                 </span>
@@ -309,7 +312,7 @@ const App = () => {
       </header>
 
       {/* API Info Banner */}
-      <div className=" bg-[#f37336]/80 text-white py-3 px-8 flex items-center gap-3 text-sm">
+      <div className=" bg-gradient-to-r from-purple-700 to-blue-600 text-white py-3 px-8 flex items-center gap-3 text-sm">
         <span className="text-xl">🔗</span>
         <span>
           Dashboard ini terintegrasi real-time dengan Moodle Core menggunakan
